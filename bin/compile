@@ -5,6 +5,8 @@ set -eo pipefail
 
 echo "-----> Running Alembic migration"
 
+export PYTHONPATH=$(pwd)
+
 set -x
 
 build_dir=$1
