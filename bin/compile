@@ -21,4 +21,4 @@ if [ -d "$env_dir" ]; then
   done
 fi
 
-(cd $build_dir && alembic upgrade head)
+(cd $build_dir && alembic revision --autogenerate && alembic upgrade head)
