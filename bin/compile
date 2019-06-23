@@ -5,8 +5,6 @@ set -eo pipefail
 
 echo "-----> Running Alembic migration"
 
-export PYTHONPATH=$(pwd)
-
 set -x
 
 build_dir=$1
@@ -15,6 +13,7 @@ env_dir=$3
 
 blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$'}
 if [ -d "$env_dir" ]; then
+  export PYTHONPATH=$(pwd)
   for e in $(ls $env_dir); do
     echo "$e" | grep -qvE "$blacklist_regex" &&
       export "$e=$(cat $env_dir/$e)"
